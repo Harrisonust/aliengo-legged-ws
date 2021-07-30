@@ -14,6 +14,7 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #include "quadruped.h"
 #include <boost/bind.hpp>
 #include "user_control.h"
+#include "XYThetaMath.h"
 #define UT UNITREE_LEGGED_SDK //short name
 
 #endif

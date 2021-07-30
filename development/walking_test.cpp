@@ -36,16 +36,17 @@ void Custom::UDPSend() { udp.Send(); }
 
 void Custom::RobotControl() {
     HighLevelControlHandler::debug();
-    HighLevelControlHandler::change_sport_mode(WALK);
-    HighLevelControlHandler::vel_set(RTO(-0.02, 90 * CONVERT_TO_RAD, 0));
+    HighLevelControlHandler::set_mode(WALK);
+    HighLevelControlHandler::set_vel(RTO(-0.02, 90 * CONVERT_TO_RAD, 0));
 
     motiontime += 2;
     udp.GetRecv(state);
     // printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
     if (motiontime > 1000) {
-        HighLevelControlHandler::pos_set(XYT(87, 66, 12));
-        HighLevelControlHandler::vel_set(RTO(87, 66, 12));
-        HighLevelControlHandler::rpy_set(RPY(87, 66, 12));
+        HighLevelControlHandler::set_pos(XYT(-87, 66, 12));
+        HighLevelControlHandler::set_vel(RTO(87, -66, -12));
+        HighLevelControlHandler::set_rpy(RPY(87, 66, -12));
+        HighLevelControlHandler::set_mode(IDLE);
     }
 
     udp.SetSend(cmd);

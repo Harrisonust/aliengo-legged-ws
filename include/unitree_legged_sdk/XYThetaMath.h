@@ -1,7 +1,7 @@
 #pragma once
 #include "math.h"
 #include "coord_sys_inc.h"
-#define func static 
+#define func static inline
 
 func XYTheta xyt_from_v2(Vec2 v, float a) { return (XYTheta){.x = v.x, .y = v.y, .theta = a}; }
 func RTOmega rto_from_pv(PolarVec v, float a) { return (RTOmega){.r = v.r, .theta = v.theta, .omega = a}; }

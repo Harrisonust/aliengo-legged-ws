@@ -10,12 +10,11 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #include <string.h>
 
 using namespace UNITREE_LEGGED_SDK;
-XYTheta apply_pos;
-RTOmega apply_vel;
+
 class Custom
 {
 public:
-    Custom(uint8_t level): safe(LeggedType::A1), udp(level){
+    Custom(uint8_t level): safe(LeggedType::A1), udp(level), control_handler(&cmd){
         udp.InitCmdData(cmd);
     }
     void UDPRecv();
@@ -28,7 +27,7 @@ public:
     HighState state = {0};
     int motiontime = 0;
     float dt = 0.002;     // 0.001~0.01
-    User_Control uc;
+    HighLevelControllHandler control_handler;
 };
 
 
@@ -44,80 +43,16 @@ void Custom::UDPSend()
 
 void Custom::RobotControl() 
 {
-    uc.testing();
+    control_handler.debug();
+    control_handler.change_sport_mode(WALK);
+    control_handler.vel_set(RTO(-0.02, 90*CONVERT_TO_RAD ,0));
+
     motiontime += 2;
     udp.GetRecv(state);
     printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
 
-    cmd.forwardSpeed = 0.0f;
-    cmd.sideSpeed = 0.0f;
-    cmd.rotateSpeed = 0.0f;
-    cmd.bodyHeight = 0.0f;
-
-    cmd.mode = 0;      // 0:idle, default stand      1:forced stand     2:walk continuously
-    cmd.roll  = 0;
-    cmd.pitch = 0;
-    cmd.yaw = 0;
-
-    if(motiontime>1000 && motiontime<1500){
-        cmd.mode = 1;
-        cmd.roll = 0.5f;
-    }
-
-    if(motiontime>1500 && motiontime<2000){
-        cmd.mode = 1;
-        cmd.pitch = 0.3f;
-    }
-
-    if(motiontime>2000 && motiontime<2500){
-        cmd.mode = 1;
-        cmd.yaw = 0.3f;
-    }
-
-    if(motiontime>2500 && motiontime<3000){
-        cmd.mode = 1;
-        cmd.bodyHeight = -0.3f;
-    }
-
-    if(motiontime>3000 && motiontime<3500){
-        cmd.mode = 1;
-        cmd.bodyHeight = 0.3f;
-    }
-
-    if(motiontime>3500 && motiontime<4000){
-        cmd.mode = 1;
-        cmd.bodyHeight = 0.0f;
-    }
-
-    if(motiontime>4000 && motiontime<5000){
-        cmd.mode = 2;
-    }
-
-    if(motiontime>5000 && motiontime<8500){
-        cmd.mode = 2;
-        cmd.forwardSpeed = 0.1f; // -1  ~ +1
-    }
-
-    if(motiontime>8500 && motiontime<12000){
-        cmd.mode = 2;
-        cmd.forwardSpeed = -0.2f; // -1  ~ +1
-    }
-
-    if(motiontime>12000 && motiontime<16000){
-        cmd.mode = 2;
-        cmd.rotateSpeed = 0.3f;   // turn
-    }
-
-    if(motiontime>16000 && motiontime<20000){
-        cmd.mode = 2;
-        cmd.rotateSpeed = -0.3f;   // turn
-    }
-
-    if(motiontime>20000 ){
-        cmd.mode = 1;
-    }
-
     udp.SetSend(cmd);
+    control_handler.sport_apply();
 }
 
 int main(void) 

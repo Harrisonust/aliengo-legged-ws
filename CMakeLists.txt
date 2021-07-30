@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(unitree_legged_sdk)
 
-include_directories(include)
+include_directories(include include/unitree_legged_sdk)
 
 link_directories(lib)
 
@@ -46,5 +46,5 @@ add_executable(lcm_server examples/lcm_server.cpp)
 target_link_libraries(lcm_server ${EXTRA_LIBS})
 
 # development folder
-add_executable(walking_test development/walking_test.cpp)
+add_executable(walking_test development/walking_test.cpp development/user_control.cpp)
 target_link_libraries(walking_test ${EXTRA_LIBS})

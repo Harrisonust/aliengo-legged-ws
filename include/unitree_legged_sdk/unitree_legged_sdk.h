@@ -9,6 +9,7 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #include <boost/bind.hpp>
 
 #include "comm.h"
+#include "convertion.h"
 #include "coord_XYThetaMath.h"
 #include "lcm.h"
 #include "loop.h"

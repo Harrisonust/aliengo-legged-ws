@@ -1,0 +1,8 @@
+#pragma once
+
+#define CONVERT_TO_RAD 0.01744444444
+#define CONVERT_TO_DEG 57.3248407643
+#define M2MM 1000
+#define MM2M 0.001
+#define SEC_TO_MSEC 1000
+#define MSEC_TO_SEC 0.001

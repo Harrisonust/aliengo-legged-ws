@@ -24,10 +24,9 @@ class Custom {
 
     Safety safe;
     UDP udp;
-    HighCmd cmd = {0};
     HighState state = {0};
     int motiontime = 0;
-    float dt = 0.002;  // 0.001~0.01
+    const float dt = 0.002;  // 0.001~0.01 sec
 };
 
 void Custom::UDPRecv() { udp.Recv(); }
@@ -39,7 +38,6 @@ void Custom::RobotControl() {
     HighLevelControlHandler::set_mode(WALK);
     HighLevelControlHandler::set_vel(RTO(-0.02, 90 * CONVERT_TO_RAD, 0));
 
-    motiontime += 2;
     udp.GetRecv(state);
     // printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
     if (motiontime > 1000) {
@@ -49,8 +47,10 @@ void Custom::RobotControl() {
         HighLevelControlHandler::set_mode(IDLE);
     }
 
-    udp.SetSend(cmd);
+    udp.SetSend(HighLevelControlHandler::get_cmd());
     HighLevelControlHandler::sport_apply();
+
+    motiontime += dt * SEC_TO_MSEC;
 }
 
 int main(void) {

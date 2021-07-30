@@ -2,10 +2,6 @@
 #include "math.h"
 
 #define func static
-#define CONVERT_TO_RAD 0.01744444444
-#define CONVERT_TO_DEG 57.3248407643
-#define M2MM 1000
-#define MM2M 0.001
 
 struct Vec2 {
     float x;

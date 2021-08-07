@@ -1,0 +1,22 @@
+#pragma once
+#define FORWARD_ACC_LIMIT 1
+#define BACKWARD_ACC_LIMIT 1
+#define LEFTWARD_ACC_LIMIT 1
+#define RIGHTWARD_ACC_LIMIT LEFTWARD_ACC_LIMIT
+#define SIDEWARD_ACC_LIMIT  LEFTWARD_ACC_LIMIT
+#define ROTATE_ACC_LIMIT 1
+
+#define FORWARD_SPEED_LIMIT 1.6      // m/s
+#define BACKWARD_SPEED_LIMIT 0.7
+#define LEFTWARD_SPEED_LIMIT 0.4
+#define RIGHTWARD_SPEED_LIMIT LEFTWARD_SPEED_LIMIT
+#define SIDEWARD_SPEED_LIMIT  LEFTWARD_SPEED_LIMIT
+#define ROTATE_SPEED_LIMIT 120       // degree/s
+
+static XYTheta wb_getCurrentPos(){
+    return XYT(0,0,0);
+}
+
+static RTOmega wb_getCurrentVel(){
+    return RTO(0,0,0);
+}

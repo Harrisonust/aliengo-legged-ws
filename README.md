@@ -23,4 +23,4 @@ make
 ```
 
 ## Usage
-Run examples with 'sudo' for memory locking.
+Run examples with **'sudo'** for memory locking.

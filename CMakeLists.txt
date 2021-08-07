@@ -46,5 +46,5 @@ add_executable(lcm_server examples/lcm_server.cpp)
 target_link_libraries(lcm_server ${EXTRA_LIBS})
 
 # development folder
-add_executable(navigation development/navigation.cpp)
+add_executable(navigation development/navigation.cpp development/user_control.cpp)
 target_link_libraries(navigation ${EXTRA_LIBS})

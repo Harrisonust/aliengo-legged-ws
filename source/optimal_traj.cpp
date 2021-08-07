@@ -1,8 +1,6 @@
 #include "optimal_traj.h"
-#include "coord_XYThetaMath.h"
-#include "coord_RTOmegaMath.h"
+#include "coord_Math.h"
 #include "robot.h"
-#include "coord_sys_inc.h"
 
 bool reach_slow_down(const double delta, const double apply, const double acc_limit){
     double target_vel = 2 * acc_limit * delta;

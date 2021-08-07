@@ -2,10 +2,8 @@
 #include <iostream>
 
 #include "comm.h"
-#include "coord_XYThetaMath.h"
-#include "coord_RTOmegaMath.h"
-#include "coord_sys_inc.h"
-
+#include "coord_Math.h"
+#include "convertion.h"
 #define func inline static
 
 enum Mode { IDLE, FORCED_STAND, WALK, NUM_OF_MODE };
@@ -44,7 +42,7 @@ func std::ostream& operator<<(std::ostream& os, const XYTheta& xyt) {
 }
 
 func std::ostream& operator<<(std::ostream& os, const RTOmega& rto) {
-    os << "apply_rto: (" << rto.r << ", " << rto.theta << ", " << rto.omega
+    os << "apply_rto: (" << rto.r << ", " << rto.theta * CONVERT_TO_DEG << ", " << rto.omega
        << ")";
     return os;
 }

@@ -10,7 +10,7 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 
 #include "comm.h"
 #include "convertion.h"
-#include "coord_XYThetaMath.h"
+#include "coord_Math.h"
 #include "lcm.h"
 #include "loop.h"
 #include "quadruped.h"

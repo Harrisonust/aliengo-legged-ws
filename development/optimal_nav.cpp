@@ -32,14 +32,17 @@ class Custom {
 void Custom::UDPRecv() { udp.Recv(); }
 
 void Custom::UDPSend() { udp.Send(); }
-RTOmega sport_apply = {0};
+
+RTOmega apply_speed = {0};
 void Custom::RobotControl() {
     HighLevelControlHandler::debug();
-    HighLevelControlHandler::set_mode(WALK);
-    HighLevelControlHandler::set_vel(RTO(-0.02, 90 * CONVERT_TO_RAD, 0));
+    HighLevelControlHandler::set_mode(FORCED_STAND);
+    // HighLevelControlHandler::set_vel(RTO(-0.02, 90 * CONVERT_TO_RAD, 0));
 
     if (motiontime > 1000) {
-        trap_optimal_traj(XYT(0,0,0),sport_apply );
+        const XYTheta target_pos = {100, 100, 0};
+        trap_optimal_traj(target_pos, apply_speed);
+        HighLevelControlHandler::set_vel(apply_speed);
     }
 
     udp.GetRecv(state);

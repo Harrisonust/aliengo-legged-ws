@@ -3,6 +3,7 @@
 
 #include "comm.h"
 #include "coord_XYThetaMath.h"
+#include "coord_RTOmegaMath.h"
 #include "coord_sys_inc.h"
 
 #define func inline static
@@ -12,7 +13,6 @@ enum Mode { IDLE, FORCED_STAND, WALK, NUM_OF_MODE };
 class HighLevelControlHandler {
    private:
     static UNITREE_LEGGED_SDK::HighCmd cmd;
-    static XYTheta _apply_pos;
     static RTOmega _apply_vel;
     static RPYaw _apply_rpy;
     static Mode _sport_mode;
@@ -27,7 +27,7 @@ class HighLevelControlHandler {
 
     func void set_mode(Mode mode);
 
-    func void set_pos(XYTheta pos);
+    // func void set_pos(XYTheta pos);
 
     func void set_vel(RTOmega vel);
 
@@ -55,11 +55,25 @@ func std::ostream& operator<<(std::ostream& os, const RPYaw& rpy) {
     return os;
 }
 
+func std::ostream& operator<<(std::ostream& os, const Mode& mode) {
+    switch (mode){
+        case IDLE:
+            os << "Mode: (" << "IDLE" << ")"; 
+        case FORCED_STAND:
+            os << "Mode: (" << "FORCED_STAND" << ")"; 
+        case WALK:
+            os << "Mode: (" << "WALK" << ")"; 
+        default:
+            os << "Mode: (" << "UNDEFINDED" << ")";
+    }
+    return os;
+}
+
 void HighLevelControlHandler::debug() {
-    std::cout << _apply_pos << std::endl;
+    std::cout << RTO2XYT(_apply_vel) << std::endl;
     std::cout << _apply_vel << std::endl;
     std::cout << _apply_rpy << std::endl;
-    std::cout << _sport_mode << std::endl;
+    // std::cout << _sport_mode << std::endl;
 }
 
 // 0: idle, default stand
@@ -67,7 +81,7 @@ void HighLevelControlHandler::debug() {
 // 2: walk continuously
 void HighLevelControlHandler::set_mode(Mode mode) { _sport_mode = mode; }
 
-void HighLevelControlHandler::set_pos(XYTheta pos) { _apply_pos = pos; }
+// void HighLevelControlHandler::set_pos(XYTheta pos) { _apply_pos = pos; }
 
 void HighLevelControlHandler::constrain(double& value, const double& highend,
                                         const double& lowend) {

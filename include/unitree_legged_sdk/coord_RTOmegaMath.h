@@ -16,4 +16,11 @@ func RTOmega XYT2RTO(const XYTheta xyt){
                         .theta = atan(xyt.y/xyt.x), 
                         .omega = xyt.theta};
 }
+
+func XYTheta RTO2XYT(const RTOmega rto){
+    return (XYTheta){   .x = rto.r * cos(rto.theta),
+                        .y = rto.r * sin(rto.theta),
+                        .theta = rto.omega};
+}
+
 #undef func

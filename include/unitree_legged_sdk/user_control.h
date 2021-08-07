@@ -17,8 +17,8 @@ class HighLevelControlHandler {
     static RPYaw _apply_rpy;
     static Mode _sport_mode;
 
-    func void constrain(float& value, const float& highend,
-                        const float& lowend);
+    func void constrain(double& value, const double& highend,
+                        const double& lowend);
 
    public:
     HighLevelControlHandler() = default;
@@ -69,8 +69,8 @@ void HighLevelControlHandler::set_mode(Mode mode) { _sport_mode = mode; }
 
 void HighLevelControlHandler::set_pos(XYTheta pos) { _apply_pos = pos; }
 
-void HighLevelControlHandler::constrain(float& value, const float& highend,
-                                        const float& lowend) {
+void HighLevelControlHandler::constrain(double& value, const double& highend,
+                                        const double& lowend) {
     if (value > highend) value = highend;
     if (value < lowend) value = lowend;
 }

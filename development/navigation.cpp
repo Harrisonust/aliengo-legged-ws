@@ -38,7 +38,6 @@ void Custom::RobotControl() {
     HighLevelControlHandler::set_mode(WALK);
     HighLevelControlHandler::set_vel(RTO(-0.02, 90 * CONVERT_TO_RAD, 0));
 
-    udp.GetRecv(state);
     // printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
     if (motiontime > 1000) {
         // HighLevelControlHandler::set_pos(XYT(-87, 66, 12));
@@ -47,6 +46,7 @@ void Custom::RobotControl() {
         HighLevelControlHandler::set_mode(IDLE);
     }
 
+    udp.GetRecv(state);
     udp.SetSend(HighLevelControlHandler::get_cmd());
     HighLevelControlHandler::sport_apply();
 

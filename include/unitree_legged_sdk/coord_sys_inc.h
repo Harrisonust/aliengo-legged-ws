@@ -4,31 +4,31 @@
 #define func static
 
 struct Vec2 {
-    float x;
-    float y;
+    double x;
+    double y;
 };
 
 struct XYTheta {
-    float x;
-    float y;
-    float theta;
+    double x;
+    double y;
+    double theta;
 };
 
 struct PolarVec {
-    float r;
-    float theta;
+    double r;
+    double theta;
 };
 
 struct RTOmega {
-    float r;
-    float theta;
-    float omega;
+    double r;
+    double theta;
+    double omega;
 };
 
 struct RPYaw {
-    float roll;
-    float pitch;
-    float yaw;
+    double roll;
+    double pitch;
+    double yaw;
 };
 
 #define XYT(X, Y, T) ((XYTheta){.x = (X), .y = (Y), .theta = (T)})

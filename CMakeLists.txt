@@ -48,3 +48,6 @@ target_link_libraries(lcm_server ${EXTRA_LIBS})
 # development folder
 add_executable(navigation development/navigation.cpp source/user_control.cpp)
 target_link_libraries(navigation ${EXTRA_LIBS})
+
+add_executable(optimal_nav development/optimal_nav.cpp source/user_control.cpp source/optimal_traj.cpp)
+target_link_libraries(optimal_nav ${EXTRA_LIBS})

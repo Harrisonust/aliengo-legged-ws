@@ -46,5 +46,5 @@ add_executable(lcm_server examples/lcm_server.cpp)
 target_link_libraries(lcm_server ${EXTRA_LIBS})
 
 # development folder
-add_executable(walking_test development/walking_test.cpp)
-target_link_libraries(walking_test ${EXTRA_LIBS})
+add_executable(navigation development/navigation.cpp)
+target_link_libraries(navigation ${EXTRA_LIBS})

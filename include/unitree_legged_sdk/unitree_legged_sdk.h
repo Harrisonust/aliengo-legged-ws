@@ -6,15 +6,17 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #ifndef _UNITREE_LEGGED_SDK_H_
 #define _UNITREE_LEGGED_SDK_H_
 
+#include <boost/bind.hpp>
+
 #include "comm.h"
+#include "convertion.h"
+#include "coord_XYThetaMath.h"
+#include "lcm.h"
+#include "loop.h"
+#include "quadruped.h"
 #include "safety.h"
 #include "udp.h"
-#include "loop.h"
-#include "lcm.h"
-#include "quadruped.h"
-#include <boost/bind.hpp>
 #include "user_control.h"
-#include "XYThetaMath.h"
-#define UT UNITREE_LEGGED_SDK //short name
+#define UT UNITREE_LEGGED_SDK  // short name
 
 #endif

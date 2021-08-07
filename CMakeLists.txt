@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(unitree_legged_sdk)
 
-include_directories(include)
+include_directories(include include/unitree_legged_sdk)
 
 link_directories(lib)
 

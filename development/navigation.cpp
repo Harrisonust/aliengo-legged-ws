@@ -41,9 +41,9 @@ void Custom::RobotControl() {
     udp.GetRecv(state);
     // printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
     if (motiontime > 1000) {
-        HighLevelControlHandler::set_pos(XYT(-87, 66, 12));
-        HighLevelControlHandler::set_vel(RTO(87, -66, -12));
-        HighLevelControlHandler::set_rpy(RPY(87, 66, -12));
+        // HighLevelControlHandler::set_pos(XYT(-87, 66, 12));
+        // HighLevelControlHandler::set_vel(RTO(87, -66, -12));
+        // HighLevelControlHandler::set_rpy(RPY(87, 66, -12));
         HighLevelControlHandler::set_mode(IDLE);
     }
 

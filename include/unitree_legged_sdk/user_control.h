@@ -62,9 +62,9 @@ void HighLevelControlHandler::debug() {
     std::cout << _sport_mode << std::endl;
 }
 
-// 0:idle, default stand
-// 1:forced stand
-// 2:walk continuously
+// 0: idle, default stand
+// 1: forced stand
+// 2: walk continuously
 void HighLevelControlHandler::set_mode(Mode mode) { _sport_mode = mode; }
 
 void HighLevelControlHandler::set_pos(XYTheta pos) { _apply_pos = pos; }
